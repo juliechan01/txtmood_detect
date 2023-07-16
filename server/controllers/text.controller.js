@@ -10,12 +10,13 @@ module.exports = {
 
     // CREATE A TEXT
     addText: (req, res) => {
-        const { body } = req.body;
+        const { body, mood } = req.body;
         Text.create({
-            body: body
+            body: body,
+            mood: mood
         })
             .then(newText => {
-                res.status(201).json({ text: newText })
+                res.status(201).json(newText)
             })
             .catch((err) => {
                 res.status(406).json(err);

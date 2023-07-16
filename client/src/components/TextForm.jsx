@@ -1,14 +1,15 @@
+import axios from "axios";
 import { useState } from "react";
-import { GrammarlyEditorPlugin } from "@grammarly/editor-sdk-react";
+import Select from 'react-select';
 
 const TextForm = (props) => {
-    const { initialBody, onSubmitProp, errors, onTextUpdate } = props
+    const { initialBody, createText, errors, onTextUpdate, mood, setMood, options } = props
     const [ body, setBody ] = useState(initialBody);
 
     const onSubmitHandler = async (e) => {
         e.preventDefault();
         try {
-            const updatedText = await onSubmitProp({ body });
+            const updatedText = await createText({ body, mood });
             onTextUpdate(updatedText);
         }
         catch(error) {
@@ -21,13 +22,16 @@ const TextForm = (props) => {
             <form onSubmit ={ onSubmitHandler }>
                 <div>
                     <div className='col mt-3'>
-                        <label> Check the mood of your text here! </label><br />
-                        <GrammarlyEditorPlugin>
-                            <input type="text" className={`form-control ${errors.body && 'is-invalid'}`} name='body' value={body} placeholder="Enter some text here" onChange = {(e) => setBody(e.target.value)}/>
-                        </GrammarlyEditorPlugin>
+                        <label> Enter your text here! </label><br />
+                        <input type="text" className={`form-control ${errors.body && 'is-invalid'}`} name='body' value={body} placeholder="Enter some text here" onChange = {(e) => setBody(e.target.value)}/>
                         { errors.body &&
                             <p className='text-danger'>{ errors.body.message }</p>
                         }
+                    </div>
+
+                    <div className='col mt-3'>
+                        <label> How are you feeling today? </label><br />
+                        <Select options={options} defaultValue={ mood } onChange = {(e) => setMood(e.label)}/>
                     </div>
                 </div>
 
@@ -36,7 +40,8 @@ const TextForm = (props) => {
                 </div>
             </form>
 
-            <h2> The mood of your entry appears: </h2>
+            <h2> You have set the mood to { mood }</h2>
+            {/* <h2> The mood of your entry appears: </h2> */}
         </div>
     );
 }

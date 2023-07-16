@@ -3,19 +3,8 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 const TextList = (props) => {
-    const { texts , setTexts } = props;
+    const { texts , setTexts, mood } = props;
     const [ sortDirection , setSortDirection ] = useState('Oldest to latest');
-
-    useEffect(() => {
-        axios.get('http://localhost:8000/api/texts')
-        .then((res) => {
-            console.log(res.data);
-            setTexts(res.data);
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-    }, []);
 
     const sortTexts = (direction) => {
         setSortDirection(direction);
@@ -59,6 +48,7 @@ const TextList = (props) => {
                             <div key={index}>
                                 <div className='body'>
                                     <p>{text.body}</p>
+                                    <p>{text.mood}</p>
                                     <Link to={`/texts/${text._id}`} className='btn btn-outline-secondary me-2'>
                                         Edit
                                     </Link>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { options } from './Main';
 import TextForm from '../components/TextForm';
 import DeleteButton from '../components/DeleteButton';
 
@@ -9,6 +10,7 @@ const EditText = (props) => {
     const [ text, setText ] = useState({});
     const [ loaded, setLoaded ] = useState(false);
     const [ errors, setErrors ] = useState({});
+    const [ mood, setMood ] = useState(null);
     const navigate = useNavigate();
 
     const removeFromDom = () => {
@@ -53,7 +55,7 @@ const EditText = (props) => {
                 {
                     loaded && 
                         <div>
-                            <TextForm onSubmitProp={ updateText } initialBody={text.body} errors={errors}/>
+                            <TextForm onSubmitProp={ updateText } initialBody={text.body} errors={errors} mood={ text.mood } setMood={setMood} options={options}/>
                         </div>
                 }
             </div>
