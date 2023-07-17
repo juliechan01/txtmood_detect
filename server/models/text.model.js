@@ -5,7 +5,7 @@ const TextSchema = new mongoose.Schema({
         type: String,
         required: [
             true,
-            "Input must contain at least 5 words! Must contain at least 120 characters (a few sentences) to accurately detect tone."
+            "Input must contain at least 5 words! Must contain at least 120 characters (or a few sentences)."
         ]
     },
     mood: {

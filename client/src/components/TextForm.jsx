@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useState } from "react";
 import Select from 'react-select';
 
@@ -31,7 +30,7 @@ const TextForm = (props) => {
 
                     <div className='col mt-3'>
                         <label> How are you feeling today? </label><br />
-                        <Select options={options} defaultValue={ mood } onChange = {(e) => setMood(e.label)}/>
+                        <Select options={options} defaultValue={ options.find(e => e.label == mood) } onChange = {(e) => setMood(e.label)}/>
                     </div>
                 </div>
 
@@ -40,7 +39,7 @@ const TextForm = (props) => {
                 </div>
             </form>
 
-            <h2> You have set the mood to { mood }</h2>
+            <h2> You have set the mood to: { mood }</h2>
             {/* <h2> The mood of your entry appears: </h2> */}
         </div>
     );

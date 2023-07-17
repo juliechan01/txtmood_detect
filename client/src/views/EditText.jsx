@@ -22,6 +22,7 @@ const EditText = (props) => {
         axios.get(`http://localhost:8000/api/texts/${id}`)
             .then(res => {
                 setText(res.data);
+                setMood({ value: res.data.mood.toLowerCase(), label: res.data.mood })
                 setLoaded(true);
             })
     }, [id])
@@ -55,7 +56,7 @@ const EditText = (props) => {
                 {
                     loaded && 
                         <div>
-                            <TextForm onSubmitProp={ updateText } initialBody={text.body} errors={errors} mood={ text.mood } setMood={setMood} options={options}/>
+                            <TextForm createText={ updateText } initialBody={text.body} errors={errors} mood={ text.mood } setMood={setMood} options={options}/>
                         </div>
                 }
             </div>

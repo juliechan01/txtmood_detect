@@ -4,6 +4,7 @@ import Main from './views/Main';
 import EditText from './views/EditText';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../tailwind.config';
 
 function App() {
 
