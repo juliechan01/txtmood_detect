@@ -10,7 +10,7 @@
 ![edit page](./assets/edit%20page.png)
 ---
 ## Version Updates (current & planning)
-v1: current version - contains all CRUD capabilities
-v2: allows user to select multiple moods & has a light/dark mode
-v3: has a register & login
-v4: supports multiple languages and uses an emotion/sentiment API to automatically detect tones present in text 
+1. current version - contains all CRUD capabilities
+2. allows user to select multiple moods & has a light/dark mode
+3. has a register & login
+4. supports multiple languages and uses an emotion/sentiment API to automatically detect tones present in text 
