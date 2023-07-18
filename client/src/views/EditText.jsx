@@ -5,12 +5,11 @@ import { options } from './Main';
 import TextForm from '../components/TextForm';
 import DeleteButton from '../components/DeleteButton';
 
-const EditText = (props) => {
+const EditText = () => {
     const { id } = useParams();
     const [ text, setText ] = useState({});
     const [ loaded, setLoaded ] = useState(false);
     const [ errors, setErrors ] = useState({});
-    const [ mood, setMood ] = useState(null);
     const navigate = useNavigate();
 
     const removeFromDom = () => {
@@ -21,8 +20,8 @@ const EditText = (props) => {
     useEffect(() => {
         axios.get(`http://localhost:8000/api/texts/${id}`)
             .then(res => {
+                console.log("Retrieving...[edit text response]", res);
                 setText(res.data);
-                setMood({ value: res.data.mood.toLowerCase(), label: res.data.mood })
                 setLoaded(true);
             })
     }, [id])
@@ -41,11 +40,11 @@ const EditText = (props) => {
     }
 
     return (
-        <div>
-            <div className='head'>
+        <>
+            <div>
                 <h1> TxtMood Detect </h1>
                 <div className='action-head'>
-                    <Link to={'/'}> go back home </Link>
+                    <Link to={'/'} className='bg-sky-300 rounded-md p-2 mr-3'> Go back 🏡 </Link>
                     <div className='delete'>
                         <DeleteButton textId={text._id} successCallback={() => removeFromDom(text._id)} />
                     </div>
@@ -56,11 +55,11 @@ const EditText = (props) => {
                 {
                     loaded && 
                         <div>
-                            <TextForm createText={ updateText } initialBody={text.body} errors={errors} mood={ text.mood } setMood={setMood} options={options}/>
+                            <TextForm createText={ updateText } initialBody={text.body} errors={errors} initialMood={ text.mood } options={options}/>
                         </div>
                 }
             </div>
-        </div>
+        </>
     )
 }
 

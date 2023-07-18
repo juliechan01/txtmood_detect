@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const TextList = (props) => {
-    const { texts , setTexts, mood } = props;
+    const { texts } = props;
     const [ sortDirection , setSortDirection ] = useState('Oldest to latest');
 
     const sortTexts = (direction) => {
@@ -18,29 +18,19 @@ const TextList = (props) => {
         return 0;
     });
 
-    const handleTextUpdate = (updatedText) => {
-        const updatedTexts = texts.map((text) => {
-            if(text._id === updatedText._id) {
-                return updatedText;
-            }
-            return text;
-        });
-        setTexts(updatedTexts);
-    }
-
     return (
-        <div className='card'>
-            <div className="card-body">
-                <div>
-                    <button className='btn btn-primary mb-3' onClick={() => sortTexts('Oldest to latest')}>
+        <div className='container'>
+            <div className="card">
+                <div className='buttons'>
+                    <button className="bg-sky-300 rounded-md p-2 mr-3 mb-3 hover:bg-sky-500" onClick={() => sortTexts('Oldest to latest')}>
                         Sort Oldest to Newest
                     </button>
 
-                    <button className='btn btn-primary mb-3 ms-2' onClick={() => sortTexts('Latest to oldest')}>
+                    <button className='bg-sky-300 rounded-md p-2 mb-3 hover:bg-sky-500' onClick={() => sortTexts('Latest to oldest')}>
                         Sort Newest to Oldest
                     </button>
                 </div>
-                <p className='plum'>Sort Direction: { sortDirection }</p>
+                <p className='text-violet-500 underline decoration-dotted pb-3'>Sort Direction: { sortDirection }</p>
                 {
                     sortedTexts.map((text, index) => {
                         return (
@@ -48,8 +38,8 @@ const TextList = (props) => {
                                 <div className='body'>
                                     <p>{text.body}</p>
                                     <p>{text.mood}</p>
-                                    <Link to={`/texts/${text._id}`} className='btn btn-outline-secondary me-2'>
-                                        Edit
+                                    <Link to={`/texts/${text._id}`} className='buttons btn btn-outline-secondary'>
+                                        Edit 📝
                                     </Link>
                                 </div>
                             </div>

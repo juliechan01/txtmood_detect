@@ -6,7 +6,6 @@ import TextForm from "../components/TextForm";
 const Main = () => {
     const [ texts, setTexts ] = useState([]);
     const [ errors, setErrors ] = useState({});
-    const [ mood, setMood ] = useState("Neutral");
 
     const createText = textParam => {
         axios.post('http://localhost:8000/api/texts/add', textParam)
@@ -34,14 +33,14 @@ const Main = () => {
 
     return (
         <>
-            <div className='head'>
+            <div>
                 <h1> TxtMood Detect </h1>
             </div>
 
-            <div className="body">
+            <div>
                 <h3> All entries </h3>
-                <TextList texts={ texts } setTexts={ setTexts } mood={ mood } />
-                <TextForm createText={ createText } initialBody='' errors={ errors } mood={ mood } setMood={setMood} options={options}/>
+                <TextList texts={ texts }/>
+                <TextForm createText={ createText } initialBody='' errors={ errors } initialMood="Neutral 😐" options={options}/>
             </div>
         </>
     )
@@ -61,24 +60,24 @@ export const options = [
     { value: "energized", label: "Energized 🔋" },
     { value: "excited", label: "Excited 🤩" },
     { value: "happy", label: "Happy 🙂" },
-    { value: "hopeful", label: "Hopeful" },
-    { value: "joyful", label: "Joyful" },
-    { value: "productive", label: "Productive" },
-    { value: "relaxed", label: "Relaxed" },
-    { value: "neutral", label: "Neutral" },
-    { value: "angry", label: "Angry" },
-    { value: "annoyed", label: "Annoyed" },
-    { value: "anxious", label: "Anxious" },
-    { value: "depressed", label: "Depressed" },
-    { value: "distant", label: "Distant/disconnected" },
-    { value: "envious", label: "Envious" },
-    { value: "frustrated", label: "Frustrated" },
-    { value: "grumpy", label: "Grumpy" },
-    { value: "insecure", label: "Insecure" },
-    { value: "irritable", label: "Irritable" },
-    { value: "overwhelmed", label: "Overwhelmed" },
-    { value: "pessimistic", label: "Pessimistic" },
-    { value: "sad", label: "Sad" },
-    { value: "stressed", label: "Stressed" },
-    { value: "tired", label: "Tired" }
+    { value: "hopeful", label: "Hopeful 🥹" },
+    { value: "joyful", label: "Joyful 🥰" },
+    { value: "productive", label: "Productive 👩🏻‍💻" },
+    { value: "relaxed", label: "Relaxed 💆🏻‍♂️" },
+    { value: "neutral", label: "Neutral 😐" },
+    { value: "angry", label: "Angry 😠" },
+    { value: "annoyed", label: "Annoyed 🙄" },
+    { value: "anxious", label: "Anxious 😬" },
+    { value: "depressed", label: "Depressed 😭" },
+    { value: "distant", label: "Distant/disconnected 🫥" },
+    { value: "envious", label: "Envious 😒" },
+    { value: "frustrated", label: "Frustrated 😫" },
+    { value: "grumpy", label: "Grumpy 😡" },
+    { value: "insecure", label: "Insecure 👀" },
+    { value: "irritable", label: "Irritable 🤬" },
+    { value: "overwhelmed", label: "Overwhelmed 🤯" },
+    { value: "pessimistic", label: "Pessimistic 😑" },
+    { value: "sad", label: "Sad 😞" },
+    { value: "stressed", label: "Stressed 🫨" },
+    { value: "tired", label: "Tired 😴" }
 ]
