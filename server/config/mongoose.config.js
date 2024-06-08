@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect("https://txtmood-detect-backend.vercel.app/", { 
+mongoose.connect("mongodb://127.0.0.1:27017/texts", { 
     useNewUrlParser: true, 
     useUnifiedTopology: true,
 })

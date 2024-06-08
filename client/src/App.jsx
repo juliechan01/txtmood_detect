@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import Main from './views/Main';
 import EditText from './views/EditText';
 import './App.css';
@@ -25,6 +26,7 @@ function App() {
           <Route element={<Main />} path='/' default/>
           <Route element={<EditText />} path='/texts/:id' />
         </Routes>
+        <SpeedInsights />
       </BrowserRouter>
     </div>
   )
